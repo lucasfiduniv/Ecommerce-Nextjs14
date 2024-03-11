@@ -1,8 +1,9 @@
 import { api } from "@/data/api";
+import { Product } from "@/data/types/product";
 import Image from "next/image";
 import Link from "next/link";
 
-async function getFeaturedProducts() {
+async function getFeaturedProducts(): Promise<Product[]> {
   const response = await api("/products/featured");
 
   const products = await response.json();
