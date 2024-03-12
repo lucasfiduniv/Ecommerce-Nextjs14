@@ -5,7 +5,7 @@ import Link from "next/link";
 
 async function getFeaturedProducts(): Promise<Product[]> {
   const response = await api("/products/featured", {
-    cache: "force-cache",
+    cache: "no-store",
   });
 
   const products = await response.json();
