@@ -6,9 +6,13 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {fontFamily:{
-    sans:"var(--font-inter)"
-  }},
+  theme: {
+    extends: {
+      fontFamily: {
+        sans: "var(--font-inter)"
+      }
+    }
+  },
   plugins: [],
 };
 export default config;
