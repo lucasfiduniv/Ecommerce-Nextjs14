@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function getFeaturedProducts(): Promise<Product[]> {
-  const response = await api("/products/featured");
+  const response = await api("/products/featured", {
+    cache: "force-cache",
+  });
 
   const products = await response.json();
   return products;
@@ -12,7 +14,6 @@ async function getFeaturedProducts(): Promise<Product[]> {
 
 export default async function Home() {
   const [highlightedProduct, ...otherProducts] = await getFeaturedProducts();
-  console.log(highlightedProduct.image);
   return (
     <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
       <Link
