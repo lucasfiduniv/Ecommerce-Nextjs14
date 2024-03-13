@@ -1,6 +1,25 @@
+import { api } from "@/data/api";
+import { Product } from "@/data/types/product";
 import Image from "next/image";
 
-export default function ProductPage() {
+interface ProductProps {
+  params: {
+    slug: string;
+  };
+}
+
+async function getProduct(slug: string): Promise<Product> {
+  const response = await api(`/products/featured ${slug}`, {
+    cache: "no-store",
+  });
+
+  const products = await response.json();
+  return products;
+}
+
+export default async function ProductPage({ params }: ProductProps) {
+  const product = await getProduct(params.slug);
+
   return (
     <div className="relative grid max-h-[860px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
