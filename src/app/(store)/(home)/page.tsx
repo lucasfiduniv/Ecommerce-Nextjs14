@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { api } from "@/data/api";
 import { Product } from "@/data/types/product";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Home",
+};
 
 async function getFeaturedProducts(): Promise<Product[]> {
   const response = await api("/products/featured", {
@@ -42,7 +47,7 @@ export default async function Home() {
       {otherProducts.map((product) => {
         return (
           <Link
-            href="/"
+            href={product.slug}
             key={product.id}
             className="group relative col-span-3 row-span-3 rounded-lg bg-zinc-900 overflow-hidden flex justify-center itens-end"
           >

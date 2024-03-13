@@ -9,7 +9,7 @@ interface ProductProps {
 }
 
 async function getProduct(slug: string): Promise<Product> {
-  const response = await api(`/products/featured ${slug}`, {
+  const response = await api(`/products/${slug}`, {
     cache: "no-store",
   });
 
@@ -38,14 +38,13 @@ export default async function ProductPage({ params }: ProductProps) {
         </p>
         <div className="mt-08 flex items-centergap-3">
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
-            {product.price.toLocaleString("pt-BR", {
+            {product.price?.toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
             })}
           </span>
           <span className="text-sm text-zinc-400">
+            ou em 12x de
             {(product.price / 12).toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
