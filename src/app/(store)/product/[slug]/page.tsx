@@ -55,6 +55,12 @@ export default function ProductPage() {
               GG
             </button>
           </div>
+          <button
+            type="button"
+            className="mt-08 flex h-12 w-full items-center justify-center rounded-full bg-emerald-600 text-white font p-2"
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     </div>
