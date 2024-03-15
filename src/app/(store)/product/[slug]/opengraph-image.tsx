@@ -42,7 +42,7 @@ export default async function OgImage({
           flexDirection: "column",
         }}
       >
-        <Image src={productImageURL} alt="" style={{ widht: "100%" }} />
+        <img src={productImageURL} alt="" style={{ width: "100%" }} />
       </div>
     ),
     {
