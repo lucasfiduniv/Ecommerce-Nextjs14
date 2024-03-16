@@ -38,9 +38,7 @@ export default async function OgImage({
           background: colors.zinc[950],
           width: "100%",
           height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
+          display: "flex",        }}
       >
         <img src={productImageURL} alt="" style={{ width: "100%" }} />
       </div>
