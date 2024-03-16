@@ -1,42 +1,42 @@
-import { AddToCartButton } from "@/components/add-to-cart-button";
-import { api } from "@/data/api";
-import { Product } from "@/data/types/product";
-import { Metadata } from "next";
-import Image from "next/image";
+import { AddToCartButton } from '@/components/add-to-cart-button'
+import { api } from '@/data/api'
+import { Product } from '@/data/types/product'
+import { Metadata } from 'next'
+import Image from 'next/image'
 
 interface ProductProps {
   params: {
-    slug: string;
-  };
+    slug: string
+  }
 }
 
 async function getProduct(slug: string): Promise<Product> {
   const response = await api(`/products/${slug}`, {
-    cache: "no-store",
-  });
+    cache: 'no-store',
+  })
 
-  const products = await response.json();
-  return products;
+  const products = await response.json()
+  return products
 }
 
 export async function generateMetadata({
   params,
 }: ProductProps): Promise<Metadata> {
-  const product = await getProduct(params.slug);
+  const product = await getProduct(params.slug)
   return {
     title: product.title,
-  };
+  }
 }
 export async function generateStaticParams() {
-  const response = await api("/products/featured");
-  const products: Product[] = await response.json();
+  const response = await api('/products/featured')
+  const products: Product[] = await response.json()
   return products.map((product) => {
-    return { slug: product.slug };
-  });
+    return { slug: product.slug }
+  })
 }
 
 export default async function ProductPage({ params }: ProductProps) {
-  const product = await getProduct(params.slug);
+  const product = await getProduct(params.slug)
 
   return (
     <div className="relative grid max-h-[860px] grid-cols-3">
@@ -56,16 +56,16 @@ export default async function ProductPage({ params }: ProductProps) {
         </p>
         <div className="mt-08 flex items-centergap-3">
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
-            {product.price?.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
+            {product.price?.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
             })}
           </span>
           <span className="text-sm text-zinc-400">
             ou em 12x de
-            {(product.price / 12).toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
+            {(product.price / 12).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
             })}
           </span>
         </div>
@@ -101,5 +101,5 @@ export default async function ProductPage({ params }: ProductProps) {
         </div>
       </div>
     </div>
-  );
+  )
 }

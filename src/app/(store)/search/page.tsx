@@ -2,7 +2,7 @@ import { api } from '@/data/api'
 import { Product } from '@/data/types/product'
 import Image from 'next/image'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 interface SearchProps {
   searchParams: {
@@ -21,9 +21,10 @@ async function searchProducts(query: string): Promise<Product[]> {
 
 export default function Search({ searchParams }: SearchProps) {
   const { q: query } = searchParams
+  const router = useRouter()
 
   if (!query) {
-    redirect('/')
+    router.push('/')
     return null
   }
 
@@ -50,7 +51,7 @@ export default function Search({ searchParams }: SearchProps) {
                 src={product.image}
                 width={480}
                 height={480}
-                alt={product.image}
+                alt={product.title}
                 quality={100}
                 className="group-hover:scale-105 transition-transform duration-500"
               />
