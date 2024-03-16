@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { CartWidget } from "./cart-widget";
-import SearchForm from "./search-form";
+import Link from 'next/link'
+import Image from 'next/image'
+import { CartWidget } from './cart-widget'
+import SearchForm from './search-form'
 
 export function Header() {
   return (
@@ -10,8 +10,7 @@ export function Header() {
         <Link href="/" className="text-2xl font-extrabold text-white">
           DevStore
         </Link>
-          <SearchForm/>
-       
+        <SearchForm />
       </div>
       <div className="flex items-center gap-4">
         <CartWidget />
@@ -28,5 +27,5 @@ export function Header() {
         </Link>
       </div>
     </div>
-  );
+  )
 }
